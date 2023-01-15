@@ -3,8 +3,7 @@ const db = require('../tools/database')
 
 const Consoles = db.define('consoles', {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
         primaryKey: true,
         allowNull: false
     },

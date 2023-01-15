@@ -5,8 +5,13 @@ const Games = require('./videogames.models')
 const Consoles = require('./consoles.models')
 
 const GamesConsoles = db.define('gamesconsoles', {
-    console_id : {
-        type: DataTypes.INTEGER,
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        allowNull: false
+    },
+    consoleId : {
+        type: DataTypes.UUID,
         allowNull: false,
         field: 'console_id',
         references: {
@@ -14,8 +19,8 @@ const GamesConsoles = db.define('gamesconsoles', {
             models: Consoles
         }
     },
-    game_id : {
-        type: DataTypes.INTEGER,
+    gameId : {
+        type: DataTypes.UUID,
         allowNull: false,
         field: 'game_id',
         references: {
@@ -23,8 +28,7 @@ const GamesConsoles = db.define('gamesconsoles', {
             models: Games
         }
     }
-}, { timestamps: false }
-)
+})
 
 module.exports = GamesConsoles
 

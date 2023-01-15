@@ -6,8 +6,8 @@ const Companies = require('./companies.models')
 
 const Games = db.define('games', {
     id : {
-        primaryKey: true, 
         type: DataTypes.UUID,
+        primaryKey: true, 
         allowNull: false
     },
     name:{

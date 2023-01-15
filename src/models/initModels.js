@@ -10,10 +10,14 @@ const initModels = ()=> {
     Users.hasMany(Games)
     Games.belongsTo(Users)
 
-    // - Games M:M Consoles - //
-    Games.belongsToMany(Consoles, { through: GamesConsoles})
-    Consoles.belongsToMany(Games, { through: GamesConsoles})
+    // - Games 1:M GamesConsoles - //
+    Games.hasMany(GamesConsoles)
+    GamesConsoles.belongsTo(Games)
     
+    // - Consoles 1:M GameConsole - //
+    Consoles.hasMany(GamesConsoles)
+    GamesConsoles.belongsTo(Consoles)
+
     // - Companies 1:M Games - //
     Companies.hasMany(Games)
     Games.belongsTo(Companies)
