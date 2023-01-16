@@ -26,18 +26,18 @@ const showGameById = (req, res) => {
 }
 
 const entryGame = (req, res) => {
-    const { name, description, relaseDate, urlImg, userId, companyId } = req.body
+    const userId = req.user.id
+    const { name, description, relaseDate, urlImg, companyId } = req.body
 
     if (
         name &&
         description &&
         relaseDate &&
         urlImg &&
-        userId &&
         companyId
     ) {
         videogamesControllers.registerGame({
-            name, description, relaseDate, urlImg, userId, companyId
+            name, description, relaseDate, urlImg, companyId, userId
         })
         .then(data => {
             res.status(201).json(data)
@@ -51,7 +51,6 @@ const entryGame = (req, res) => {
             description: 'string',
             relaseDate: 'YYYY/MM/DD',
             urlImg: 'string',
-            userId: 'number',
             companyId: 'number'
         }})
     }
@@ -91,10 +90,22 @@ const deleteGame = (req, res) => {
       })
 }
 
+const getUserGames = (req, res) => {
+    const userId = req.user.id
+    videogamesControllers.getMyGames(userId)
+    .then((data) => {
+        res.status(200).json(data)
+    })
+    .catch(err => {
+        res.status(400).json({message:err.message})
+    })
+}
+
 module.exports = {
     showAllGames,
     showGameById,
     entryGame,
+    getUserGames,
     changeGame,
     deleteGame
 }
