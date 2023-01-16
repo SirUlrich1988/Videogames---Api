@@ -49,6 +49,8 @@ Librerias para Autenticacion y Verificacion
 12. npm install passport passport-jwt jsonwebtoken
 13. npm i bcrypt
 
+npm i swagger-ui-express
+
 - Ruta para Registrar Usuario
 - post : localhost:9000/api/v1/auth/register
 - info para registro de usuario 

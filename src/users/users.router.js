@@ -6,7 +6,7 @@ const userServices = require('./users.services')
 require('../middlewares/auth.middleware')(passport)
 //? rutas raiz
 
-router.get('/', passport.authenticate('jwt', {session: false}), userServices.getAllUsers)
+router.get('/', userServices.getAllUsers)
 
 //TODO el registerUser ira en la ruta /auth/register
 
@@ -32,7 +32,7 @@ router.route('/:id')
     userServices.deleteUser)
 
 // - esto se crea despues - //
-//! /api/v1/users/:id
+// - /api/v1/users/:id - //
 router.route('/me')
     .get(
         passport.authenticate('jwt', {session: false}),
