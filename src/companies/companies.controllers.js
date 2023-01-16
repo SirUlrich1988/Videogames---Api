@@ -1,3 +1,5 @@
+const uuid = require('uuid')
+
 const Companies = require('../models/companies.models')
 
 // -- Ver todas las compañias -- //
@@ -12,15 +14,19 @@ const showAllCompanies = async ()=> {
 
 const showCompanyById = async (id)=> {
     const data = await Companies.findOne({
-
-    })
-}
-
-const createCompany = async (name) => {
-    const data = await Companies.create({
-        name
+        where: {
+            id: id
+        }
     })
     return data
+}
+
+const createCompany = async (data) => {
+    const newCompany = await Companies.create({
+        id: uuid.v4(),
+        name: data.name
+    })
+    return newCompany
 }
 
 const removeCompany = async (id) => {

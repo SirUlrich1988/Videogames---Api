@@ -3,6 +3,11 @@ const uuid = require('uuid')
 
 const Games = require('../models/videogames.models')
 
+// -- Ver todas los videojuegos -- //
+// -- Ver un videojuego en especifico -- //
+// -- Registrar un videojuego -- //
+// -- Eliminar un videojuego -- //
+
 const getAllGames = async () => {
     const data = await Games.findAll()
     return data

@@ -12,12 +12,13 @@ const getAllConsoles = (req, res) => {
 
 const getConsoleById = (req, res) => {
     const id = req.params.id
-    consolesControllers.showConsoleById(id)
-        .then(data => {
+    consolesControllers
+    .showConsoleById(id)
+        .then((data) => {
             if(data){
                 res.status(200).json(data)
             } else {
-                res.status(400).json({message: `ID: ${id}, not exists`})
+                res.status(400).json({message: 'Invalid Id', id})
             }
         })
         .catch(err => {
@@ -29,7 +30,7 @@ const postConsole = (req, res) => {
     const { name } = req.body
 
     if(name){
-        consolesControllers.createConsole(name)
+        consolesControllers.createConsole({name})
             .then(data => {
                 res.status(201).json(data)
             })
@@ -37,12 +38,9 @@ const postConsole = (req, res) => {
                 res.status(400).json({message: err.message})
             })
     } else {
-        res.status(400).json({
-            message: 'Invalid data',
-            fields: {
+        res.status(400).json({message: 'All fields must be completed', fields: {
                 name: 'string'
-            }
-        })
+            }})
     }
 }
 

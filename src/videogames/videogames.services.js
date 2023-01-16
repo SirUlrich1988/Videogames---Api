@@ -13,11 +13,11 @@ const showAllGames = (req, res) => {
 const showGameById = (req, res) => {
     const id = req.params.id
     videogamesControllers.getGameById(id)
-    .then(data => {
+    .then((data) => {
         if(data){
             res.status(200).json(data)
         } else {
-            res.status(400).json({message: `ID: ${id}, not exists`})
+            res.status(400).json({message: 'Invalid Id', id})
         }
     })
     .catch(err => {
@@ -27,6 +27,7 @@ const showGameById = (req, res) => {
 
 const entryGame = (req, res) => {
     const { name, description, relaseDate, urlImg, userId, companyId } = req.body
+
     if (
         name &&
         description &&
@@ -38,7 +39,7 @@ const entryGame = (req, res) => {
         videogamesControllers.registerGame({
             name, description, relaseDate, urlImg, userId, companyId
         })
-        .then( data => {
+        .then(data => {
             res.status(201).json(data)
         })
         .catch(err => {
@@ -60,7 +61,8 @@ const changeGame = (req, res) => {
     const id = req.params.id
     const { name, description, relaseDate, urlImg, userId, companyId } = req.body
 
-    videogamesControllers.updateGame(id, { name, description, relaseDate, urlImg, userId, companyId })
+    videogamesControllers
+    .updateGame(id, { name, description, relaseDate, urlImg, userId, companyId })
     .then((data) => {
         if (data[0]) {
             res.status(200).json({message: `The game registration ${id} has been updated!`})
@@ -75,7 +77,8 @@ const changeGame = (req, res) => {
 
 const deleteGame = (req, res) => {
     const id = req.params.id
-    videogamesControllers.removeGame(id)
+    videogamesControllers
+    .removeGame(id)
     .then((data) => {
         if (data) {
           res.status(204).json();

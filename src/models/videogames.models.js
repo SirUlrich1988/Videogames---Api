@@ -19,7 +19,7 @@ const Games = db.define('games', {
         allowNull: false,
     },
     relaseDate:{
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         field: 'release_date'
     },

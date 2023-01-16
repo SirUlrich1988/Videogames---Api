@@ -59,7 +59,7 @@ const registerUser = (req, res) => {
 
 const patchUser = (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, phone, gender, country } = req.body;
+  const { firstName, lastName, phone } = req.body
 
   usersControllers
     .updateUser(id, { firstName, lastName, phone })
@@ -80,7 +80,7 @@ const patchUser = (req, res) => {
 // -- Delete por Administrador -- //
 
 const deleteUser = (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id
   usersControllers
     .deleteUser(id)
     .then((data) => {
